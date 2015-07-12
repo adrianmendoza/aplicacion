@@ -1,4 +1,5 @@
 @section('modulo')
+<div class="fNegocio">
 <div class="row">
 	<div class="push_two seven columns">
 		<div class="encabezado margen">
@@ -8,6 +9,7 @@
 
 		<div class="contenido margen">
 		<ul>
+		<label class="success label ancho">Nombre Negocio</label>
 			<li class="field">
 				{{ Form::text('negocio', null , 
 						array('placeholder'=>'Nombre negocio',
@@ -16,6 +18,7 @@
 					}}	
 			</li>
 			<li class="field">
+			<label class="success label ancho">Historia Negocio</label>
 				{{ Form::textarea('historia', null , 
 						array('placeholder'=>'Historia',
 						'class'=>'input textarea',
@@ -24,6 +27,7 @@
 				}}	
 			</li>
 			<li class="field">
+			<label class="success label ancho">Socios</label>
 				{{ Form::textarea('socios', null , 
 						array('placeholder'=>'Socios',
 						'class'=>'input textarea',
@@ -32,6 +36,7 @@
 				}}	
 			</li>
 			<li class="field">
+			<label class="success label ancho">Productos / Servicios</label>
 				{{ Form::textarea('prodServ', null , 
 						array('placeholder'=>'Productos/Servicios',
 						'class'=>'input textarea',
@@ -48,6 +53,5 @@
     </div>
   </div>
 </div>
-
-
+</div>
 @stop

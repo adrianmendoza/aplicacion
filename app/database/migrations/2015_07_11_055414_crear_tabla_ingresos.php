@@ -15,8 +15,9 @@ class CrearTablaIngresos extends Migration {
 		Schema::create('tbl_ingresos', function(Blueprint $table)
 		{
 			$table ->increments('id');
-			$table->date('fecha_inicio');
-			$table->date('fecha_fin');
+			$table->integer('mesInical');
+			$table->integer('añoInicial');
+			$table->integer('lapso');
 			$table-> unsignedInteger('id_negocio');
 			$table-> foreign('id_negocio')->references('id')->on('tbl_negocio');
 		});

@@ -1,20 +1,20 @@
 @section('modulo')
-	<div class="inicio">
-<div class="row centro margen">
+	<div class="inicio" id="fPrincipal">
+    <div class="row centro margen">
     <div class="twelve columns">
-      <p>Nombre Aplicacion</p>
+    <div class="six columns"></div>
+
+    <div class="six columns">
+      <h2>SISTEMA DE ESTUDIO DE FACTIBILIDAD DE NEGOCIO</h2><br>
+      <h3>SEFAN</h3>
+      </div>
     </div>
 </div>
 
-<div class="row centro margen">
-	<div class="four columns">
-    <p>4 columns 1</p>
-  </div>
-  <div class="push_four four columns">
-    <p>4 columns 2</p>
-  </div>
-  <div class="pull_four four columns">
-    <p>4 columns 3</p>
+<div class="row margen">
+  <div class="push_six six columns right">
+    <p>Bienvenidos a nuestro sistema donde crear planes de negocio es mas sencillo que nunca</p>
+    <p> Usted lo manejara mas facil que enviar cualquier otra cosa</p>
   </div>
 
 </div>

@@ -70,16 +70,16 @@ class VistaController extends BaseController
 		}
 	}
 
-
 	function configuracion(){
 		$this->layout->modulo = View::make('aplicacion.finanzas.configuracion');
 	}
 
 	function ingresos(){
-		$user = DB::table('tbl_ingresos')->where('id_negocio', 1)->first();
-		// echo   date("Y",$user->fecha_inicio);
-		// echo   $user->fecha_fin;
 		$this->layout->modulo = View::make('aplicacion.finanzas.ingresos');
+	}
+
+	function producto(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.productos');	
 	}
 
 }

@@ -48,7 +48,8 @@
 			 });
 			 	$mensajes = array('mensajeA' => 'En este momento se envio un email a tu cuenta de correo',
 			 		'mensajeB' => 'Valida tu cuenta para poder ingresar a nuestra aplicacion');
-				$this->layout->modulo=  View::make('mensaje',array('encabezado' => 'Bienvenido','cuerpo'=>$mensajes));
+
+				$this->layout->modulo =  View::make('mensaje',array('encabezado' => 'Bienvenido','cuerpo' => $mensajes));
 			}
 
 		}
