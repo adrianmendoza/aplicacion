@@ -32,6 +32,7 @@ Route::get('implementacion','VistaController@implementacion');
 Route::get('ajustes', 'VistaController@configuracion');
 Route::get('ingreso','VistaController@ingresos');
 Route::get('productos','VistaController@producto');
+Route::get('costosVenta','VistaController@costosVenta');
 
 
 Route::post('registrar','UsuarioController@registrar_bd');
@@ -47,3 +48,4 @@ Route::post('ajustes','FinanzasController@ajustes_bd');
 Route::post('validar','UsuarioController@validar');
 Route::post('productos','FinanzasController@mensaje');
 Route::post('registroProductos','FinanzasController@registro');
+Route::post('ingresos','FinanzasController@ingresos_bd');

@@ -9,12 +9,13 @@
 	{{ HTML::script('js/jquery.min.js');  }}
 	{{ HTML::script('js/modernizr-2.6.2.min.js');  }}
 	{{ HTML::script('js/plugins.js');  }}
+	{{ HTML::script('js/jquery.numeric.js')    }}
 
 </head>
 <body>
 <div class="navbar" id="navegacion">
 <ul style="float:left">
-	<li><a href="{{ url('/') }}"><h3>Principal</h3></a></li>
+	<li><a href="{{ url('/') }}"><h3 class="blanco">SEFAN</h3></a></li>
 </ul>
 <ul style="float:right">
 	@if(Session::get('id_usuario'))

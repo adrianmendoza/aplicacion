@@ -21,6 +21,8 @@
 				</p>
 					@endif
 				@else
+					{{ HTML::image('img/Bienvenido.png') }}
+					<br>
 				<p class="btn primary medium">
 					<a href={{ url('/principal/'.$identificador) }}>Entrar</a>
 				</p>

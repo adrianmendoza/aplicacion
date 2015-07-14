@@ -1,5 +1,3 @@
-$("#agregar").click(
-    function(event) {
-        
-        event.preventDefault();
+$(document).ready(function(){
+   $(".input").numeric('.');
 });

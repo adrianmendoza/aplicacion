@@ -29,9 +29,34 @@
 			?>	
 			</thead>
 			<tbody>
-			<?php 
-			 
-				for ($k=0; $k <2 ; $k++) { 
+			<tr>
+			<?php
+				
+				
+				
+				
+			for ($o=0; $o <= Session::get('lapso'); $o++) { 
+
+				if($o==0){
+					?>
+					<th>Unidades</th>
+					<?php
+				}else{
+					?>
+					<td class="centro"><?php
+					$u = DB::table('tbl_cantidades')->select('unidadMes')->where('id_ingresos','=',Session::get('id_ingreso'))->where('producto','=',Session::get('producto'.$i))->where('mesCant','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$o.' months')))->first();
+						?>
+						 {{ $u->unidadMes}}
+					
+						  </td>
+					<?php
+				}
+			}
+			?>
+			</tr>
+			<?php
+			
+					for ($k=0; $k <2 ; $k++) { 
 					?>
 					<tr> 
 					<?php 
@@ -39,7 +64,7 @@
 						if($k==0){
 						if($j==0){
 					?>
-						<td>Unidades</td>
+						<td></td>
 					<?php 
 					}else{
 						?><td>
