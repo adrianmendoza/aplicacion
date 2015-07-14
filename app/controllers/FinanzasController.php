@@ -86,6 +86,44 @@ class FinanzasController extends BaseController
 		}
 		return Redirect::to('/costosVenta');
 	}
+
+
+
+
+
+	function costoVentas(){
+		for ($i=1; $i <= Session::get('productos'); $i++) { 
+			for ($j=1; $j <= Session::get('lapso'); $j++) { 
+/*
+   			$table->increments('id');
+			$table->date('mes');
+			$table->decimal('costoCompra', 5, 2);
+			$table->decimal('comVendedor', 5, 2);
+			$table->string('producto');
+			$table->decimal('total', 5, 2);
+			
+			$table-> unsignedInteger('id_negocio');
+			$table-> foreign('id_negocio')->references('id')->on('tbl_negocio');
+*/
+
+
+			 $cant =DB::table('tbl_cantidades')->select('unidadMes')->where('id_ingresos','=',Session::get('id_ingreso'))->where('producto','=',Session::get('producto'.$i))->where('mesCant','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				/*DB::table('tbl_cantidades')->insert(array
+					(
+						'mes' =>date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$j.' months')),
+						'costoCompra'=>Input::get('CC'.$j.'P'.$i),
+						'comVendedor'=>Input::get('P'.$j.'P'.$i),
+						'producto'=>Session::get('producto'.$i),
+						'total'=>number_format($cant * (Input::get('U'.$j.'P'.$i) + Input::get('P'.$j.'P'.$i))) ,
+						'id_negocio'=> Session::get('id_negocio')
+						)
+					);*/
+				
+				
+			}
+		}
+		return Redirect::to('/gastosFijos');
+	}
 		
 
 	

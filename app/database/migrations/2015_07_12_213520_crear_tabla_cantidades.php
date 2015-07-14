@@ -18,7 +18,7 @@ class CrearTablaCantidades extends Migration {
 			$table->date('mesCant');
 			$table->integer('unidadMes');
 			$table->decimal('precioMes', 5, 2);
-			$table->string('producto');
+			$table->string('producto',30);
 			$table->decimal('total', 5, 2);
 			
 			$table-> unsignedInteger('id_ingresos');

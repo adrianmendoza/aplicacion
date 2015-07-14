@@ -49,3 +49,4 @@ Route::post('validar','UsuarioController@validar');
 Route::post('productos','FinanzasController@mensaje');
 Route::post('registroProductos','FinanzasController@registro');
 Route::post('ingresos','FinanzasController@ingresos_bd');
+Route::post('costoVentas', 'FinanzasController@costoVentas');

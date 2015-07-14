@@ -2,7 +2,7 @@
 	
 	<div class="row">
 		<div class="row margen-top-10x">
-		{{  Form::open( array('url'=>'ingresos')) }}
+		{{  Form::open( array('url'=>'costoVentas')) }}
 			<div class="medium secondary btn right">
 				{{  Form::submit('Aceptar') }}
 			</div>
@@ -56,75 +56,95 @@
 			</tr>
 			<?php
 			
-					for ($k=0; $k <2 ; $k++) { 
+					for ($k=1; $k<=2 ; $k++) { 
 					?>
 					<tr> 
 					<?php 
-						for ($j=0; $j <=Session::get('lapso') ; $j++) { 
-						if($k==0){
+						for($j=0; $j <=Session::get('lapso') ; $j++) { 
+						
+						
+
 						if($j==0){
-					?>
-						<td></td>
+							if($k==1){
+								?>
+								<td>Costo de Compra</td>
+								<?php
+								}
+							if($k==2){
+								?>
+								<td>Comision Vendedores</td>
+								<?php
+							}
+							if($k==3){
+								?>
+								<td>Total Costo Ventas</td>
+								<?php
+							}
+							?>	
 					<?php 
 					}else{
 						?><td>
 						<li class="field ancho">
-						
-						{{ Form::text('U'.$j.'P'.$i.'', null ,array(
+						<?php
+						if($k==1) 
+						{
+							?>
+						{{ Form::text('CC'.$j.'P'.$i.'', null ,array(
 							'placeholder'=>'Unidades',
 							'class'=>'input text xxwide numeric',
 							'required'=>'true'
 							)) 
 						 }}
+						 <?php 
+						}if($k == 2){
+							?>
+							{{ Form::text('CV'.$j.'P'.$i.'', null ,array(
+							'placeholder'=>'Comision Mes',
+							'class'=>'input text xxwide numeric',
+							'required'=>'true'
+							)) 
+						 }}
+							<?php 
+
+						}  
+						 ?>
 							</li>	
 							</ul>
 						</td>
 						<?php  
 						}
-					}else{
-						if($j==0){
-					?>
-						<td>Precio</td>
-					<?php 
-					}else{
-						?><td>
-						 
-						<li class="field ancho">
-						{{ Form::text('P'.$j.'P'.$i, null ,array(
-							'placeholder'=>'Precio',
-							'class'=>'input text xxwide decimal-2-places',
-							'required'=>'true'
-							)) 
-						 }}
-							</li>	
-							</ul>
-						</td>
-						<?php
-							}
-						}
 					}
 					?>
-					</tr><?php 
+					</tr>
+					
+					<?php 
 				}
+
 				?>
-				
-				
+				<tr>
+						
+					</tr>
+			
 		</tbody>
+		
 		</table>
 			
 			
-			<div class="two columns"></div>
+			
 		
-<?php  	
+			<?php  	
 			}	
 			 ?>
-
+<div class="two columns"></div>	
 
 {{ Form::close() }} 	
 	</div>
  
 
- 
+ <?php 
+
+
+  ?>
 
 
 @stop
