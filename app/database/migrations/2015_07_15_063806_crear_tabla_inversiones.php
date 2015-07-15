@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaCostoVentas extends Migration {
+class CrearTablaInversiones extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,17 @@ class CrearTablaCostoVentas extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tbl_costoVentas', function(Blueprint $table)
+		Schema::create('tbl_inversiones', function(Blueprint $table)
 		{
+			//
 			$table->increments('id');
 			$table->date('mes');
-			$table->double('costoCompra', 10, 2);
-			$table->double('comVendedor', 10, 2);
-			$table->string('producto',30);
-			$table->double('total', 10, 2);
-
+			$table->double('maqEquipo', 10, 2);
+			$table->double('MueEnseres', 10, 2);
+			$table->double('eqOficina', 10, 2);
+			$table->double('vehiculo', 10, 2);
+			$table->double('eqComp', 10, 2);
+			$table->double('totalMes', 10, 2);
 			$table-> unsignedInteger('id_negocio');
 			$table-> foreign('id_negocio')->references('id')->on('tbl_negocio');
 		});
@@ -33,7 +35,7 @@ class CrearTablaCostoVentas extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tbl_costoVentas');
+		Schema::drop('tbl_inversiones');
 	}
 
 }

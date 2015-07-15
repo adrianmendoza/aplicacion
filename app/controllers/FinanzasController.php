@@ -72,7 +72,7 @@ class FinanzasController extends BaseController
 						'costoCompra'=>Input::get('CC'.$j.'P'.$i),
 						'comVendedor'=>Input::get('CV'.$j.'P'.$i),
 						'producto'=>Session::get('producto'.$i),
-						'total'=>number_format($u->unidadMes * ((Input::get('CC'.$j.'P'.$i) + Input::get('CV'.$j.'P'.$i)))),
+						'total'=>($u->unidadMes) * ((Input::get('CC'.$j.'P'.$i) + Input::get('CV'.$j.'P'.$i))),
 						'id_negocio'=> Session::get('id_negocio')
 						)
 					);
@@ -95,19 +95,11 @@ class FinanzasController extends BaseController
 						'agua'=>		Input::get('AG'.$j),
 						'energia'=>		Input::get('E'.$j),
 						'telefono'=>	Input::get('T'.$j),
-						'tgasLocal'=>	number_format(
-								(
-									Input::get('A'.$j) + Input::get('L'.$j) + Input::get('G'.$j) + Input::get('AG'.$j)+ Input::get('E'.$j)+ Input::get('T'.$j)
-								)
-						),
+						'tgasLocal'=>	(Input::get('A'.$j) + Input::get('L'.$j) + Input::get('G'.$j) + Input::get('AG'.$j)+ Input::get('E'.$j)+ Input::get('T'.$j)),
 
 						'carFo'=>		Input::get('CF'.$j),
 						'pubInt'=>		Input::get('PI'.$j),
-						'tgasCom'=>		number_format(
-								(
-									Input::get('CF'.$j) + Input::get('PI'.$j)
-								)
-						),
+						'tgasCom'=>		(Input::get('CF'.$j) + Input::get('PI'.$j)),
 						'abogado'=>		Input::get('AB'.$j),
 						'conta'=>		Input::get('CO'.$j),
 						'libreria'=>	Input::get('LI'.$j),
@@ -117,11 +109,10 @@ class FinanzasController extends BaseController
 								)
 						),
 
-						'total'=>		number_format(
+						'total'=>		
 									(Input::get('A'.$j) + Input::get('L'.$j) + Input::get('G'.$j) + Input::get('AG'.$j)+ Input::get('E'.$j)+ Input::get('T'.$j))
 									 + (Input::get('CF'.$j) + Input::get('PI'.$j)) 
-									 + (Input::get('AB'.$j) + Input::get('CO'.$j) +  Input::get('LI'.$j))		
-						),
+									 + (Input::get('AB'.$j) + Input::get('CO'.$j) +  Input::get('LI'.$j)),
 						'id_negocio'=> Session::get('id_negocio')
 						)
 					);
@@ -137,12 +128,68 @@ class FinanzasController extends BaseController
 			return Redirect::to('/registroSueldos');
 	}
 
-
-
-	
+	function sueldos_bd(){
+			for ($j=1; $j <= Session::get('lapso'); $j++) { 
+				DB::table('tbl_sueldos')->insert(array
+					(
+						'mes' =>date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$j.' months')),
+						'sueldoSocios'=>Input::get('S'.$j),
+						'sueldoEmpleados'=>Input::get('E'.$j),
+						'totalSueldos'=>Input::get('E'.$j) + Input::get('S'.$j),
+						'id_negocio'=> Session::get('id_negocio')
+						)
+					);
+			}
 		
+		return Redirect::to('/inversiones');
+	}
 
-	
+	function inversiones_bd(){
+		for ($j=1; $j <= Session::get('lapso'); $j++) { 
+				DB::table('tbl_inversiones')->insert(array
+					(
+						'mes' => date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$j.' months')),
+						'maqEquipo'=> Input::get('MQ'.$j), 
+						'MueEnseres'=> Input::get('ME'.$j),
+						'eqOficina'=> Input::get('EO'.$j),
+						'vehiculo'=>  Input::get('V'.$j),
+						'eqComp'=>    Input::get('EC'.$j),
+						'totalMes' => Input::get('EC'.$j) + Input::get('V'.$j) + Input::get('EO'.$j) + Input::get('ME'.$j) + Input::get('MQ'.$j),
+						'id_negocio'=> Session::get('id_negocio')
+						)
+					);
+			}
+		return Redirect::to('/financiamiento');
+	}
+
+	function financiamiento_bd(){
+	for ($j=1; $j <= Session::get('lapso'); $j++) { 
+				DB::table('tbl_financiamiento')->insert(array
+					(
+						'mes' => date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$j.' months')),
+						'aporDueño'=> Input::get('A'.$j), 
+						'retDueño'=> Input::get('R'.$j),
+						'totDueños'=>  Input::get('A'.$j) - Input::get('R'.$j),
+
+						'prestCP'=> Input::get('PCP'.$j),
+						'devCP'=>  Input::get('DCP'.$j),
+						'totCP'=>   Input::get('PCP'.$j) - Input::get('DCP'.$j),
+						'intCP'=>  Input::get('PICP'.$j),
+
+						'prestLP'=> Input::get('PLP'.$j),
+						'devLP'=>  Input::get('DLP'.$j),
+						'totLP'=>    Input::get('PLP'.$j) - Input::get('DLP'.$j),
+						'intLP'=>  Input::get('PILP'.$j),
+
+						'subDona'=> Input::get('SD'.$j),
+
+						'totalMes' => (Input::get('A'.$j) - Input::get('R'.$j))+ ((Input::get('PCP'.$j) -  Input::get('DCP'.$j)) - Input::get('PICP'.$j)) + ((Input::get('PLP'.$j) - Input::get('DLP'.$j))- Input::get('PILP'.$j)) + Input::get('SD'.$j),
+						'id_negocio'=> Session::get('id_negocio')
+						)
+					);
+			}
+			return Redirect::to('/impuestos');
+	}
 
 
 }

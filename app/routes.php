@@ -36,6 +36,9 @@ Route::get('costosVenta','VistaController@costosVenta');
 Route::get('gastosFijos','VistaController@gastosFijos');
 Route::get('sueldos', 'VistaController@sueldo');
 Route::get('registroSueldos', 'VistaController@registroSueldos');
+Route::get('inversiones','VistaController@inversiones');
+Route::get('impuestos', 'VistaController@impuestos');
+Route::get('financiamiento', 'VistaController@financiamiento');
 
 
 Route::post('registrar','UsuarioController@registrar_bd');
@@ -55,3 +58,6 @@ Route::post('ingresos','FinanzasController@ingresos_bd');
 Route::post('costoVentas', 'FinanzasController@costoVentas');
 Route::post('gastosFijos', 'FinanzasController@gastosFijos_bd');
 Route::post('sueldos', 'FinanzasController@personas');
+Route::post('registroSueldos','FinanzasController@sueldos_bd');
+Route::post('inversiones','FinanzasController@inversiones_bd');
+Route::post('financiamiento','FinanzasController@financiamiento_bd');

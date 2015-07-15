@@ -1,9 +1,15 @@
 @section('modulo')
 	<div class="row">
 		<div class="row margen-top-10x">
-		{{  Form::open( array('url'=>'gastosFijos')) }}
+		<div class="ten columns success alert">
+			<p>En esta pantalla usted especifica los sueldos de socios y empleados, este valor es la suma de todos los sueldos de cada uno de estos roles.</p>
+			<p>El sueldo de empleados esta conformado por gerente, supervisores,etc </p>
+		</div>
+		<div class="two columns">
+		{{  Form::open( array('url'=>'registroSueldos')) }}
 			<div class="medium secondary btn right">
 				{{  Form::submit('Aceptar') }}
+			</div>
 			</div>
 		</div>
 	<?php 

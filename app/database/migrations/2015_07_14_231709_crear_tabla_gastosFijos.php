@@ -16,23 +16,23 @@ class CrearTablaGastosFijos extends Migration {
 		{
 			$table->increments('id');
 			$table->date('mes');
-			$table->decimal('alquiler', 10, 2);
-			$table->decimal('limpieza', 10, 2);
-			$table->decimal('gas', 10, 2);
-			$table->decimal('agua', 10, 2);
-			$table->decimal('energia', 10, 2);
-			$table->decimal('telefono', 10, 2);
-			$table->decimal('tgasLocal', 10, 2);
+			$table->double('alquiler', 10, 2);
+			$table->double('limpieza', 10, 2);
+			$table->double('gas', 10, 2);
+			$table->double('agua', 10, 2);
+			$table->double('energia', 10, 2);
+			$table->double('telefono', 10, 2);
+			$table->double('tgasLocal', 10, 2);
 
-			$table->decimal('carFo', 10, 2);
-			$table->decimal('pubInt', 10, 2);
-			$table->decimal('tgasCom', 10, 2);
+			$table->double('carFo', 10, 2);
+			$table->double('pubInt', 10, 2);
+			$table->double('tgasCom', 10, 2);
 
-			$table->decimal('abogado', 10, 2);
-			$table->decimal('conta', 10, 2);
-			$table->decimal('libreria', 10, 2);
-			$table->decimal('tgasAdm', 10, 2);
-			$table->decimal('total',12,2);
+			$table->double('abogado', 10, 2);
+			$table->double('conta', 10, 2);
+			$table->double('libreria', 10, 2);
+			$table->double('tgasAdm', 10, 2);
+			$table->double('total',12,2);
 
 			$table-> unsignedInteger('id_negocio');
 			$table-> foreign('id_negocio')->references('id')->on('tbl_negocio');

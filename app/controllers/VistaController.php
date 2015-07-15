@@ -98,6 +98,17 @@ class VistaController extends BaseController
 		$this->layout->modulo = View::make('aplicacion.finanzas.registrosSueldos');		
 	}
 
+	function inversiones(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.inversiones');
+	}
+
+	function impuestos(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.impuestos');
+	}
+	function financiamiento(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.financiamiento');
+	}
+
 }
 
  ?>
