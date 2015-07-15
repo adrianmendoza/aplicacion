@@ -58,72 +58,88 @@ class FinanzasController extends BaseController
 				$cantidad->total = $total;
 				$cantidad->id_ingresos = Session::get('id_ingreso');
 				$cantidad->save();
-
-		/*DB::table('tbl_cantidades')->insert(array(
-   				 
-   				 	    'mesCant' =>date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ 1 months')),
-						'unidadMes'=>Input::get('U1P1'),
-						'precioMes'=>number_format(Input::get('P1P1')),
-						'producto'=>Session::get('producto1'),
-						'total'=>number_format(Input::get('U1P1')*Input::get('P1P1')) ,
-						'id_ingresos'=> Session::get('id_ingreso')
-
-		));*/
-
-				/*DB::table('tbl_cantidades')->insert(array
-					(
-						'mesCant' =>date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$j.' months')),
-						'unidadMes'=>Input::get('U'.$j.'P'.$i),
-						'precioMes'=>Input::get('P'.$j.'P'.$i),
-						'producto'=>Session::get('producto'.$i),
-						'total'=>number_format(Input::get('U'.$j.'P'.$i)*Input::get('P'.$j.'P'.$i)) ,
-						'id_ingresos'=> Session::get('id_ingreso')
-						)
-					);*/
-				
-				
 			}
 		}
 		return Redirect::to('/costosVenta');
 	}
-
-
-
-
-
 	function costoVentas(){
 		for ($i=1; $i <= Session::get('productos'); $i++) { 
 			for ($j=1; $j <= Session::get('lapso'); $j++) { 
-/*
-   			$table->increments('id');
-			$table->date('mes');
-			$table->decimal('costoCompra', 5, 2);
-			$table->decimal('comVendedor', 5, 2);
-			$table->string('producto');
-			$table->decimal('total', 5, 2);
-			
-			$table-> unsignedInteger('id_negocio');
-			$table-> foreign('id_negocio')->references('id')->on('tbl_negocio');
-*/
-
-
-			 $cant =DB::table('tbl_cantidades')->select('unidadMes')->where('id_ingresos','=',Session::get('id_ingreso'))->where('producto','=',Session::get('producto'.$i))->where('mesCant','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
-				/*DB::table('tbl_cantidades')->insert(array
+			$u = DB::table('tbl_cantidades')->select('unidadMes')->where('id_ingresos','=',Session::get('id_ingreso'))->where('producto','=',Session::get('producto'.$i))->where('mesCant','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				DB::table('tbl_costoVentas')->insert(array
 					(
 						'mes' =>date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$j.' months')),
 						'costoCompra'=>Input::get('CC'.$j.'P'.$i),
-						'comVendedor'=>Input::get('P'.$j.'P'.$i),
+						'comVendedor'=>Input::get('CV'.$j.'P'.$i),
 						'producto'=>Session::get('producto'.$i),
-						'total'=>number_format($cant * (Input::get('U'.$j.'P'.$i) + Input::get('P'.$j.'P'.$i))) ,
+						'total'=>number_format($u->unidadMes * ((Input::get('CC'.$j.'P'.$i) + Input::get('CV'.$j.'P'.$i)))),
 						'id_negocio'=> Session::get('id_negocio')
 						)
-					);*/
-				
-				
+					);
 			}
 		}
 		return Redirect::to('/gastosFijos');
 	}
+
+
+
+
+	function gastosFijos_bd(){
+		for ($j=1; $j <= Session::get('lapso'); $j++){ 
+				DB::table('tbl_gastosFijos')->insert(array
+					(
+						'mes' =>date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$j.' months')),
+						'alquiler'=>	Input::get('A'.$j),
+						'limpieza'=>	Input::get('L'.$j),
+						'gas'=>			Input::get('G'.$j),
+						'agua'=>		Input::get('AG'.$j),
+						'energia'=>		Input::get('E'.$j),
+						'telefono'=>	Input::get('T'.$j),
+						'tgasLocal'=>	number_format(
+								(
+									Input::get('A'.$j) + Input::get('L'.$j) + Input::get('G'.$j) + Input::get('AG'.$j)+ Input::get('E'.$j)+ Input::get('T'.$j)
+								)
+						),
+
+						'carFo'=>		Input::get('CF'.$j),
+						'pubInt'=>		Input::get('PI'.$j),
+						'tgasCom'=>		number_format(
+								(
+									Input::get('CF'.$j) + Input::get('PI'.$j)
+								)
+						),
+						'abogado'=>		Input::get('AB'.$j),
+						'conta'=>		Input::get('CO'.$j),
+						'libreria'=>	Input::get('LI'.$j),
+						'tgasAdm'=>		number_format(
+								(
+									Input::get('AB'.$j) + Input::get('CO'.$j) +  Input::get('LI'.$j)
+								)
+						),
+
+						'total'=>		number_format(
+									(Input::get('A'.$j) + Input::get('L'.$j) + Input::get('G'.$j) + Input::get('AG'.$j)+ Input::get('E'.$j)+ Input::get('T'.$j))
+									 + (Input::get('CF'.$j) + Input::get('PI'.$j)) 
+									 + (Input::get('AB'.$j) + Input::get('CO'.$j) +  Input::get('LI'.$j))		
+						),
+						'id_negocio'=> Session::get('id_negocio')
+						)
+					);
+			}
+		
+		return Redirect::to('/sueldos');
+	}
+
+
+	function personas(){
+			Session::put('nSocios', Input::get('numsocios'));
+			Session::put('nEmpleados', Input::get('numempleados'));
+			return Redirect::to('/registroSueldos');
+	}
+
+
+
+	
 		
 
 	

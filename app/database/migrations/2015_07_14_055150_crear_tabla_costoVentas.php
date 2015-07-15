@@ -16,11 +16,11 @@ class CrearTablaCostoVentas extends Migration {
 		{
 			$table->increments('id');
 			$table->date('mes');
-			$table->decimal('costoCompra', 5, 2);
-			$table->decimal('comVendedor', 5, 2);
-			$table->string('producto');
-			$table->decimal('total', 5, 2);
-			
+			$table->decimal('costoCompra', 10, 2);
+			$table->decimal('comVendedor', 10, 2);
+			$table->string('producto',30);
+			$table->decimal('total', 10, 2);
+
 			$table-> unsignedInteger('id_negocio');
 			$table-> foreign('id_negocio')->references('id')->on('tbl_negocio');
 		});

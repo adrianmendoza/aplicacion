@@ -31,10 +31,7 @@
 			<tbody>
 			<tr>
 			<?php
-				
-				
-				
-				
+						
 			for ($o=0; $o <= Session::get('lapso'); $o++) { 
 
 				if($o==0){

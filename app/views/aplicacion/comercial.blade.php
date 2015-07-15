@@ -40,7 +40,7 @@ La clave de esta sección es que pienses en la mejor forma de llegar a tus clien
 				}}	
 			</li>
 			<li class="field">
-			<label class="success label ancho">Publicidad</label>
+			<label class="success label ancho">Promociones</label>
 				{{ Form::textarea('promociones', null ,array(
 				'placeholder'=>'Describe las promociones que realizarás para incentivar a los clientes a comprar los productos y servicios de tu empresa.',
 						'class'=>'input textarea',
