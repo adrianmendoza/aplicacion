@@ -4,12 +4,45 @@
 	<title>Iniciar</title>
 	{{ HTML::style('css/gumby.css');  }}
 	{{ HTML::style('css/main.css');  }}
+	{{ html::style('css/sweetalet.css'); }}
 	{{ HTML::script('js/gumby.js');	}}
 	{{ HTML::script('js/gumby.init.js'); }}
 	{{ HTML::script('js/jquery.min.js');  }}
 	{{ HTML::script('js/modernizr-2.6.2.min.js');  }}
 	{{ HTML::script('js/plugins.js');  }}
-	{{ HTML::script('js/jquery.numeric.js')    }}
+	{{ HTML::script('js/jquery.numeric.js');    }}
+	{{ HTML::script('js/sweetalert.js');  }}
+	<script src= "https://www.google.com/jsapi?autoload={
+            'modules':[{
+              'name':'visualization',
+              'version':'1',
+              'packages':['corechart']
+            }]
+          }'"></script>
+
+    <script type='text/javascript'>
+      google.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 
 </head>
 <body>

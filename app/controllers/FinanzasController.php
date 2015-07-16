@@ -191,8 +191,28 @@ class FinanzasController extends BaseController
 			return Redirect::to('/impuestos');
 	}
 
+	function impuestos_bd(){
+		for ($i=1; $i < Session::get('lapso'); $i++) { 
+			echo "asdasdasd	";
+			echo Input::get('I'.$i);
+			echo Input::get('T'.$i);
+			echo Input::get('SP'.$i);
+			DB::table('tbl_impuestos')->insert(array(
+				'mes' => date('Y-m-d', strtotime(Session::get('fecha_inicio').'+ '.$i.' months')),
+				'vAntes'=> Input::get('I'.$i),
+				'tasa'=>   Input::get('T'.$i),
+				'vPagar'=>Input::get('SP'.$i),
+				'sFavor'=>Input::get('SF'.$i),
+				'id_negocio'=>Session::get('id_negocio')
+
+				));
+		}
+		return Redirect::to('/informe');
+		
+	}
 
 }
+
 
  ?>
 

@@ -9,7 +9,7 @@
 
 		<div class="contenido margen">
 		<ul>
-		<label class="success label ancho">Nombre Negocio</label>
+		<label class="primary label ancho">Nombre Negocio</label>
 			<li class="field">
 				{{ Form::text('negocio', null , 
 						array('placeholder'=>'Nombre negocio',
@@ -18,7 +18,7 @@
 					}}	
 			</li>
 			<li class="field">
-			<label class="success label ancho">Historia Negocio</label>
+			<label class="primary label ancho">Historia Negocio</label>
 				{{ Form::textarea('historia', null , 
 						array('placeholder'=>'Historia',
 						'class'=>'input textarea',
@@ -27,7 +27,7 @@
 				}}	
 			</li>
 			<li class="field">
-			<label class="success label ancho">Socios</label>
+			<label class="primary label ancho">Socios</label>
 				{{ Form::textarea('socios', null , 
 						array('placeholder'=>'Socios',
 						'class'=>'input textarea',
@@ -36,7 +36,7 @@
 				}}	
 			</li>
 			<li class="field">
-			<label class="success label ancho">Productos / Servicios</label>
+			<label class="primary label ancho">Productos / Servicios</label>
 				{{ Form::textarea('prodServ', null , 
 						array('placeholder'=>'Productos/Servicios',
 						'class'=>'input textarea',

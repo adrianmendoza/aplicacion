@@ -1,5 +1,10 @@
 @section('modulo')
 <div class="row">
+<div class="ten columns">
+	<div class="alert success">
+	<h1 class="centro"></h1>
+	</div>
+</div>
 	<div class="push_two seven columns">
 		<div class="encabezado margen">
 		Proporcione los datos solicitados

@@ -1,31 +1,36 @@
 @section('modulo')
-	<div class="row">
-		<div class="row margen-top-10x">
-		<div class="ten columns info alert">
-		<h4 class="centro">Informacion</h4>
-			<p>Aqui necesitamos que nos proporciones la tasa de impuesto a la renta aplicada en su region </p>
+<div class="row">
+{{Form::open(array('url'=>'impuestos'))}}
+<div class="twelve columns margen-top-15x">
+	<div class="nine columns">
+	<div class="alert primary">
+		<p>Esta pagina calculo el impuesto a la renta al cual usted debera pagar</p>
+	</div>
+	
+	</div>
+	<div class="three columns margen-top-10x">
+		<div class="secondary btn large right">
+			{{Form::submit('Finalizar')}}
 		</div>
-		<div class="two columns">
-		{{  Form::open( array('url'=>'inversiones')) }}
-			<div class="medium secondary btn right">
-				{{  Form::submit('Aceptar') }}
-			</div>
-			</div>
-		</div>
-	<?php 
-	for ($i=1; $i <=1; $i++) {
-	 ?>
-	<table class="rounded striped margen">
+	</div>
+
+
+
+
+</div>
+
+<div class="twelve columns">	
+<table class="rounded striped margen">
 			<thead>
 			<?php 
 			for ($r=0; $r <= Session::get('lapso'); $r++) { 
 				if($r==0){
 			?>
-					<th>Socios</th>
+					<th>Aportes/Retiros Dueños </th>
 			<?php 
 				}else{	
 			 ?>
-					<th class="centro"><?php echo  date('Y-m', strtotime(Session::get('fecha_inicio').'+ '.($r).' months')); ?></th>
+					<th class="centro"><?php echo  date('Y-m', strtotime(Session::get('fecha_inicio').'+ '.$r.' months')); ?></th>
 			<?php
 				} 		
 			}
@@ -33,101 +38,136 @@
 			</thead>
 			<tbody>
 			<?php
-					for ($k=1; $k<=5 ; $k++) { 
+					for ($k=1; $k<=4; $k++) { 
 					?>
 					<tr> 
 					<?php 
 						for($j=0; $j <=Session::get('lapso') ; $j++) {
-							if($j==0){
+						if($j==0){
 							if($k==1){
 								?>
-								<td>Maquinaria y equipo</td>
+								<td>Saldo antes Impuesto</td>
 								<?php
-							}if($k==2){
+								}
+							if($k==2){
 								?>
-								<td>Muebles y Enseres</td>
+								<td>Tasa Impuesto %</td>
 								<?php
 							}if($k==3){
 								?>
-								<td>Equipo de oficina</td>
+								<td>Valor Pagar</td>
 								<?php
 							}if($k==4){
 								?>
-								<td>Vehiculo</td>
+								<td>Saldo A favor</td>
 								<?php
-							}if($k==5){
-								?>
-								<td>Equipo de computo</td>
-								<?php
-								}
-							?>	
-					<?php 
+							}
 					}else{
 						?><td>
-						<li class="field ancho">
+						<li class="field">
+						
 						<?php
 						if($k==1){
-							?>
-						{{ Form::text('MQ'.$j, null ,array(
-							'placeholder'=>'Maquinaria',
-							'class'=>'input text xxwide numeric',
-							'required'=>'true'
-							)) 
-						 }}
-						 <?php 
-						}if($k==2){
-							?>
-						{{ Form::text('ME'.$j, null ,array(
-							'placeholder'=>'Muebles',
-							'class'=>'input text xxwide numeric',
-							'required'=>'true'
-							)) 
-						 }}
-						 <?php 
-						}if($k==3){
-							?>
-						{{ Form::text('EO'.$j, null ,array(
-							'placeholder'=>'E Oficina',
-							'class'=>'input text xxwide numeric',
-							'required'=>'true'
-							)) 
-						 }}
-						 <?php 
-						}if($k==4){
-							?>
-						{{ Form::text('V'.$j, null ,array(
-							'placeholder'=>'Vehiculo',
-							'class'=>'input text xxwide numeric',
-							'required'=>'true'
-							)) 
-						 }}
-						 <?php 
-						}if($k==5){
-							?>
-						{{ Form::text('EC'.$j, null ,array(
-							'placeholder'=>'E Computo',
-							'class'=>'input text xxwide numeric',
-							'required'=>'true'
-							)) 
-						 }}
-						 <?php 
-						}
-					}  
-						 ?>
-							</li>	
-							</ul>
-						</td>
-						<?php  
-						}
-					}
-					?>
-					</tr>
-					<?php 
+						$sumaIngresos =0;
+			$sumaCV = 0;
+			for ($i=1; $i <= Session::get('productos'); $i++) {
+				$in = DB::table('tbl_cantidades')->select('total')->where('id_ingresos','=',Session::get('id_ingreso'))->where('producto','=',Session::get('producto'.$i))->where('mesCant','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				$sumaIngresos+=$in->total;
+				$cv = DB::table('tbl_costoVentas')->select('total')->where('id_negocio','=',Session::get('id_negocio'))->where('producto','=',Session::get('producto'.$i))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				 $cv->total;	
+				$sumaCV+=$cv->total;
 				}
+				$gf = DB::table('tbl_gastosFijos')->select('total')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				$sumaGF= $gf->total;
+
+				$s = DB::table('tbl_sueldos')->select('totalSueldos')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				$sumaS= $s->totalSueldos;
+				$depreciacion = 0;
+				$invMaquinaria = DB::table('tbl_inversiones')->select('maqEquipo')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				 $depreciacion+= (($invMaquinaria->maqEquipo) * (1-0.15) /5)/12;
+				
+				$invMuebles = DB::table('tbl_inversiones')->select('MueEnseres')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				$depreciacion+= ($invMuebles->MueEnseres * (1-0.05) /7)/12;
+				
+				$invEquipo = DB::table('tbl_inversiones')->select('eqOficina')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				$depreciacion+= ($invEquipo->eqOficina  * (1-0.15) /10)/12;
+				
+				$invVehiculo = DB::table('tbl_inversiones')->select('vehiculo')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				$depreciacion += ($invVehiculo->vehiculo * (1-0.15) /20)/12;
+
+				$invComputo = DB::table('tbl_inversiones')->select('eqComp')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				$depreciacion += ($invComputo->eqComp * (1-0.30) /5)/12;
+
+				$intCP = DB::table('tbl_financiamiento')->select('intCP')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				
+				$intLP = DB::table('tbl_financiamiento')->select('intLP')->where('id_negocio','=',Session::get('id_negocio'))->where('mes','=',date('Y-m-d',strtotime(Session::get('fecha_inicio').'+'.$j.' months')))->first();
+				
+				$resAntes = $sumaIngresos - $sumaCV - $gf->total - $s->totalSueldos - $depreciacion - $intCP->intCP - $intLP->intLP; 
 
 				?>
-		</tbody>
-		</table>	
-{{ Form::close() }} 	
-	</div>
+				
+				{{ Form::text('I'.$j, number_format($resAntes,2) ,array(
+							'placeholder'=>'Retiro',
+							'class'=>'input text xwide numeric',
+							'required'=>'true',
+							'onChange'=>'validarSiNumero(this.value);'
+							)) }}
+				
+				<?php 
+				}if($k==2){
+
+							?>
+
+							{{ Form::text('T'.$j, 35 ,array(
+							'placeholder'=>'Retiro',
+							'class'=>'input text xwide numeric',
+							'required'=>'true',
+							'onChange'=>'validarSiNumero(this.value);'
+							)) }}
+							<?php
+						}if($k==3){
+							if($resAntes*0.35 < 0){
+								$pago = 0 ;
+							}else{
+								$pago = $resAntes*0.35 ;
+							}
+							?>
+
+							{{ Form::text('SP'.$j, number_format($pago) ,array(
+							'placeholder'=>'Retiro',
+							'class'=>'input text xwide numeric',
+							'required'=>'true',
+							'onChange'=>'validarSiNumero(this.value);'
+							)) }}
+							<?php
+						}
+						if($k==4){
+							if($pago ==0 ){
+								$favor= abs($resAntes);
+							}else{
+								$favor = abs($resAntes);
+							}
+							?>
+
+							{{ Form::text('SF'.$j, number_format($favor) ,array(
+							'placeholder'=>'Retiro',
+							'class'=>'input text xwide numeric',
+							'required'=>'true',
+							'onChange'=>'validarSiNumero(this.value);'
+							)) 
+							}}
+							<?php
+						
+					}
+					}
+				} 
+			} 
+			 ?>
+			 </li>
+			</td>
+		</tr>
+	</tbody>
+</table>
+{{Form::close()}}
+</div>
 @stop

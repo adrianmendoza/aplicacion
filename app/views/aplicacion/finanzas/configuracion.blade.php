@@ -43,7 +43,7 @@
 				<li class="field centro">
 					<div class="centered ten columns">
 						<div class="push_one two columns">
-							<label class="label success ancho margen-top-15x"> Fecha de Inicio </label>
+							<label class="label success ancho margen-top-15x"> Tiempo de proyeccion </label>
 						</div>
 						<div class="push_one two columns">
 							<div class="picker margen-top-10x">
