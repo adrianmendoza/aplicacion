@@ -15,6 +15,7 @@
 </div>	
 </div>
 
+<<<<<<< HEAD
 <div class="graficos">
 	<div class="alert primary">
 		<h3 class="centro">
@@ -67,4 +68,11 @@ function drawChart() {
 
 
  ?>
+=======
+<div class="">
+	
+</div>
+	
+</div>
+>>>>>>> 2ffe0cc2ee32f0f2204ccf023c5e2684a559562d
 @stop

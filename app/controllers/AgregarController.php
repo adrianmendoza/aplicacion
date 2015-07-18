@@ -8,13 +8,20 @@ class AgregarController extends BaseController
 
 	//Insertar  Negocio en la tabla tbl_negocio
 	function negocio_bd(){
+<<<<<<< HEAD
 		$fecha_actual = date('Y-m-d');
 		echo $fecha_actual;
+=======
+
+>>>>>>> 2ffe0cc2ee32f0f2204ccf023c5e2684a559562d
 		DB::table('tbl_negocio')->insert(array('nombreNeg' => Input::get('negocio'),
 		'histNeg'=>Input::get('historia'),
 		'socNeg'=>Input::get('socios'), 
 		'prodSerNeg'=>Input::get('prodServ'),
+<<<<<<< HEAD
 		'fecha_creacion'=>date('Y-m-d'),
+=======
+>>>>>>> 2ffe0cc2ee32f0f2204ccf023c5e2684a559562d
 		'id_usuario'=> Session::get('id_usuario')
 		  ));
 		 return Redirect::to('/industria');

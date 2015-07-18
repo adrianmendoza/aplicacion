@@ -19,7 +19,10 @@ class CrearTablaNegocio extends Migration {
 			$table ->string('histNeg', 1000);
 			$table ->string('socNeg', 500);
 			$table ->string('prodSerNeg', 1000);
+<<<<<<< HEAD
 			$table->date('fecha_creacion');
+=======
+>>>>>>> 2ffe0cc2ee32f0f2204ccf023c5e2684a559562d
 			$table-> unsignedInteger('id_usuario');
 			$table-> foreign('id_usuario')->references('id')->on('tbl_usuarios');
 		});
