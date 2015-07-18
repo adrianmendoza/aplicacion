@@ -9,16 +9,20 @@
 				@endforeach
 				@if(!Session::get('id_usuario'))
 					@if($encabezado==='Bienvenido')
-					{{ HTML::image('img/email.png',array('id' => 'modal1')) }}
+					{{ HTML::image('img/email.png') }}
 					<p class="btn primary medium">
 					<a href={{  url('/acceder')  }}>Acceder</a>
 				</p>
 					@else
+					{{ HTML::image('img/alerta.png') }}
+					<br>
 				<p class="btn primary medium">
 					<a href="javascript: history.go(-1)">Regresar</a>
 				</p>
-				@endif
+					@endif
 				@else
+					{{ HTML::image('img/Bienvenido.png') }}
+					<br>
 				<p class="btn primary medium">
 					<a href={{ url('/principal/'.$identificador) }}>Entrar</a>
 				</p>

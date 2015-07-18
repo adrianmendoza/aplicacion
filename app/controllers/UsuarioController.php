@@ -48,7 +48,8 @@
 			 });
 			 	$mensajes = array('mensajeA' => 'En este momento se envio un email a tu cuenta de correo',
 			 		'mensajeB' => 'Valida tu cuenta para poder ingresar a nuestra aplicacion');
-				$this->layout->modulo=  View::make('mensaje',array('encabezado' => 'Bienvenido','cuerpo'=>$mensajes));
+
+				$this->layout->modulo =  View::make('mensaje',array('encabezado' => 'Bienvenido','cuerpo' => $mensajes));
 			}
 
 		}
@@ -86,7 +87,6 @@
 
 
 		function validar(){
-			
 			$data = Input::all();
 			//Reglas de validacion
 			$reglas  = array('email' => 'required',
@@ -97,7 +97,6 @@
 				$errores = $validacion->messages()->all();
 				$this->layout->modulo = View::make('mensaje',array('encabezado' => 'Error de validacion',
 				'cuerpo'=>$errores ));
-			
 			}
 			else{
 				$usuarios = new UsuariosModel;
@@ -125,7 +124,7 @@
 						Session::put('apellido',$datos_usuario->apellido);
 						Session::put('identificador',$datos_usuario->identificador);
 						Session::put('rol',$datos_usuario->rol);
-						$encabezado = "Bienvenido ";
+						$encabezado = "";
 						$cuerpo = "";
 
 						$this->mostrar_mensajes($encabezado, $cuerpo);

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaIngresos extends Migration {
+class CrearTablaSueldos extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,17 @@ class CrearTablaIngresos extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('tbl_ingresos', function(Blueprint $table)
+		Schema::create('tbl_sueldos', function(Blueprint $table)
 		{
-			$table ->increments('id');
-			$table->integer('mesInical');
-			$table->integer('añoInicial');
-			$table->integer('lapso');
+			$table->increments('id');
+			$table->date('mes');
+			$table->double('sueldoSocios', 10, 2);
+			$table->double('sueldoEmpleados', 10, 2);
+			$table->double('totalSueldos', 10, 2);
+
 			$table-> unsignedInteger('id_negocio');
 			$table-> foreign('id_negocio')->references('id')->on('tbl_negocio');
+
 		});
 	}
 
@@ -30,8 +33,7 @@ class CrearTablaIngresos extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('tbl_ingresos');
-
+		Schema::drop('tbl_sueldos');
 	}
 
 }

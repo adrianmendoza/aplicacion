@@ -1,5 +1,5 @@
 @section('modulo')
-<div class="fondo">
+<div class="fRegistrar">
 <div class="row">
 	<div class="centered six columns" id="registro">
 	<div class="encabezado">
@@ -10,7 +10,7 @@
 		<ul>
 			<div class="row">
 				<div class="three columns">
-					<li class="info label" id="in">Nombre</li>
+					<li class="info label ancho">Nombre</li>
 				</div>
 				<div class="nine columns">
 					<li class="field">
@@ -25,7 +25,7 @@
 
 			<div class="row">
 				<div class="three columns">
-					<li class="info label" id="in">Apellido</li>
+					<li class="info label ancho">Apellido</li>
 				</div>
 				<div class="nine columns">
 					<li class="field">
@@ -40,7 +40,7 @@
 
 			<div class="row">
 				<div class="three columns">
-					<li class="info label" id="in">Email</li>
+					<li class="info label ancho">Email</li>
 				</div>
 				<div class="nine columns">
 					<li class="field">
@@ -54,13 +54,9 @@
 				</div>
 			</div>
 
-
-			
-
-
 			<div class="row">
 				<div class="three columns">
-					<li class="info label" id="in">Contraseña</li>
+					<li class="info label ancho">Contraseña</li>
 				</div>
 				<div class="nine columns">
 					<li class="field">
@@ -76,13 +72,8 @@
 			<li >
 				<div class="medium primary btn">
 					{{ Form::submit('Registrar'); }}
-
 				</div>
-					
-
 			</li>
-
-
 
 		</ul>
 		{{ Form::close(); }}

@@ -1,12 +1,27 @@
-@section('modulo')
-<div class="row">
-	<div class="twelve columns">
-		<div class="encabezado margen">
-		Proporcione los datos solicitados
-		</div>
-		{{Form::open(array('url'=>'industria') )}}
 
-		<div class="contenido margen">
+@section('modulo')
+<div class="fNegocio">
+	{{Form::open(array('url'=>'industria') )}}
+<div class="row">
+<div class="ten columns margen-top-10x">
+		<div class="alert yellow">
+			<p><h3 class="black">Industria</h3></p>	
+			<p>En esta seccion se necesita la informacion acerca del ambito de desarrollo de la empresa</p>
+		</div>
+  </div>
+  <div class="two columns margen-top-10x">
+  	<div class="medium secondary btn">
+
+   		 {{  Form::submit('Siguiente')  }} 
+    	</div>
+  </div>
+	<div class="eleven columns">
+		<!-- <div class="encabezado margen">
+		Proporcione los datos solicitados
+		</div> -->
+		
+
+		<div class="contenido">
 			<div class="four columns">
 			<label class="warning label ancho">Mercado</label>
 				<br>
@@ -94,11 +109,9 @@
 
 		</div>
 	</div>	
-	<div class="twelve columns margen">
-		<div class="medium secondary btn right">
-   		 {{  Form::submit('Siguiente')  }} 
-    	</div>
-  </div>
+	
+</div>
+ {{ Form::close()}}
 </div>
 
 @stop

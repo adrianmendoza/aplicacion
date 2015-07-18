@@ -70,18 +70,49 @@ class VistaController extends BaseController
 		}
 	}
 
-
 	function configuracion(){
 		$this->layout->modulo = View::make('aplicacion.finanzas.configuracion');
 	}
 
 	function ingresos(){
-		$user = DB::table('tbl_ingresos')->where('id_negocio', 1)->first();
-		// echo   date("Y",$user->fecha_inicio);
-		// echo   $user->fecha_fin;
 		$this->layout->modulo = View::make('aplicacion.finanzas.ingresos');
 	}
 
+	function producto(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.productos');	
+	}
+
+	function costosVenta(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.costosVenta');
+	}
+
+	function gastosFijos(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.gastosFijos');
+	}
+
+	function sueldo(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.sueldos');	
+	}
+
+	function registroSueldos(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.registrosSueldos');		
+	}
+
+	function inversiones(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.inversiones');
+	}
+
+	function impuestos(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.impuestos');
+	}
+
+	function financiamiento(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.financiamiento');
+	}
+
+	function informe(){
+		$this->layout->modulo = View::make('aplicacion.finanzas.informe');
+	}
 }
 
  ?>
